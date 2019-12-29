@@ -39,3 +39,37 @@ Route::get('/create', function(){
     $video->tags()->save($tag2);
 
 });
+
+Route::get('/read', function(){
+
+    $post = Post::findOrFail(6);
+
+    foreach ($post->tags as $tag){
+
+        echo $tag;
+
+    }
+
+});
+
+Route::get('/update', function(){
+
+//    $post = Post::findOrFail(6);
+//
+//    foreach ($post->tags as $tag){
+//
+//        $tag->whereName('Java')->update(['name'=>'Java Spring MVC']);
+//
+//    }
+
+    $post = Post::findOrFail(6);
+
+    $tag = Tag::findOrFail(3);
+
+//    $post->tags()->save($tag);
+
+//    $post->tags()->attach($tag);
+
+    $post->tags()->sync([2]);
+
+});
